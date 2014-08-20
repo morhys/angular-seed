@@ -26,6 +26,10 @@ body {
 .menu > li {
   display: inline;
 }
+.thumbnails{
+  margin: 0;  
+  padding: 0;
+}
 
 .menu > li:before {
   content: "|";
@@ -36,7 +40,9 @@ body {
   content: "";
   padding: 0;
 }
-
+.votingWidget {
+  float: left;
+}
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -44,4 +50,11 @@ body {
 .blue {
   background: blue;
   color:red;
+}
+
+.well-lg {
+padding: 24px 5px;
+border-radius: 6px;
+list-style-type: none;
+overflow: hidden;
 }
