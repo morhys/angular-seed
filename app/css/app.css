@@ -43,6 +43,7 @@ body {
 .votingWidget {
   float: left;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -53,8 +54,8 @@ body {
 }
 
 .well-lg {
-padding: 24px 5px;
-border-radius: 6px;
-list-style-type: none;
-overflow: hidden;
+  padding: 24px 5px;
+  border-radius: 6px;
+  list-style-type: none;
+  overflow: hidden;
 }
