@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventsApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Event Details</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body ng-cloak>
+
+<div class="container">
+
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+
+            </ul>
+        </div>
+    </div>
+
+    <div ng-controller="EventController">
+        <img ng-src="{{ event.imageUrl }}">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- ng-bind allows for alternative {{}} expression -->
+                <h2 ng-bind="event.name"></h2>
+
+                <!-- ng-bind-template allows multiple object properties to be assigned-->
+                <h2 ng-class="blue" ng-bind-template="{{ event.name }} {{ event.date }}"></h2>
+
+                <h1 ng-class="blue">ng-class</h1>
+
+                <!-- binds html inside the controller scope -->
+                <div ng-bind-html="snippet"></div>
+
+                <!-- True/False set in controller scope -->
+                <h2 ng-show="boolValue">Show</h2>
+                <h2 ng-hide="boolValue">Hide</h2>
+
+
+                <h2>{{ event.name }}</h2>
+                <div><strong>Date:</strong>{{ event.date }}</div>
+                <div><strong>Time:</strong>{{ event.time }}</div>
+            </div>
+            <div class="col-md-4">
+                <address>
+                    <strong>Address:</strong><br>
+                    {{ event.location.address }}<br>
+                    {{ event.location.postcode }}
+                </address>
+            </div>
+        </div>
+
+        <h3>Sessions</h3>
+            <ul class="thumbnails ">
+                <li ng-repeat="session in event.sessions " class="well">
+                     <div class="col-md-1 votingWidget">
+                        <div class="votingButton" ng-click="upVoteSession(session)">
+                          <i class="glyphicon glyphicon-chevron-up icon-white"></i>
+                        </div>  
+                        <div class="badge">
+                          <div>{{ session.upVoteCount }}</div>
+                        </div>
+                        <div class="votingButton" ng-click="downVoteSession(session)">
+                          <i class="glyphicon glyphicon-chevron-down"></i>
+                        </div>  
+                    </div>
+                    {{ session.name }}
+                </li>
+            </ul>
+    </div>
+</div>
+
+
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/underscore.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/EventController.js"></script>
+</body>
+</html>
