@@ -13,13 +13,30 @@
 
 <div class="container">
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav">
 
-            </ul>
-        </div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Event Manager</a>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav pull-right">
+          <li><a href="">Home</a></li>
+          <li><a href="">Create Event</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 
     <div ng-controller="EventController">
         <img ng-src="{{ event.imageUrl }}">
@@ -41,10 +58,17 @@
                 <h2 ng-show="boolValue">Show</h2>
                 <h2 ng-hide="boolValue">Hide</h2>
 
+                <!-- ng-non-bindable directive doesnt evaluate {{}} as an expression -->
+                <h2 ng-non-bindable>{{ something }}</h2>
 
                 <h2>{{ event.name }}</h2>
                 <div><strong>Date:</strong>{{ event.date }}</div>
                 <div><strong>Time:</strong>{{ event.time }}</div>
+                <!-- Formatting -->
+                <div><strong>Price:</strong>{{ 34 | currency }}</div>
+                <!-- Used to formar javascript dates -->
+                <div><strong>Date:</strong>{{ event.date | date:'mediumDate' }}</div>
+
             </div>
             <div class="col-md-4">
                 <address>
@@ -59,6 +83,10 @@
             <ul class="thumbnails">
                 <li ng-repeat="session in event.sessions " class="well well-lg">
                      <div class="col-md-1 votingWidget">
+                        <!-- 
+                          * ng-click directive using upVoteSession method and 
+                          * pass in session that is being upvoted.
+                        -->
                         <div class="votingButton" ng-click="upVoteSession(session)">
                           <i class="glyphicon glyphicon-chevron-up icon-white"></i>
                         </div>  
@@ -69,7 +97,8 @@
                           <i class="glyphicon glyphicon-chevron-down"></i>
                         </div>  
                     </div>
-                    {{ session.name }}
+                    <!-- filers seperated by pipe | -->
+                    {{ session.name | uppercase }}
                 </li>
             </ul>
     </div>
